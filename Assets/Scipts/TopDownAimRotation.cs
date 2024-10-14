@@ -8,10 +8,15 @@ public class TopDownAimRotation : MonoBehaviour
     [SerializeField] private SpriteRenderer characterRenderer;
 
     private TopDownController _controller;
+    
+
 
     private void Awake()
     {
+        Animator animator = GetComponent<Animator>();
+        GetComponentInParent<CharacterAnimationController>().SetAnimation(animator);
         _controller = GetComponent<TopDownController>();
+        // 애니메이션 여기서 찾고 넘겨줘라
     }
 
     void Start()

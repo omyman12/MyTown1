@@ -12,9 +12,10 @@ public class CharacterAnimationController : AnimationController
 
     protected override void Awake()
     {
-        base.Awake();
+        base.Awake(); //찾을때 새ㅔㅇ성이안되잇음
     }
 
+    
     void Start()
     {
         controller.OnMoveEvent += Move;
@@ -23,5 +24,10 @@ public class CharacterAnimationController : AnimationController
     private void Move(Vector2 obj)
     {
         animator.SetBool(IsWalking, obj.magnitude > magnituteThreshold);
+    }
+
+    public void SetAnimation(Animator animator)
+    {
+        this.animator = animator;
     }
 }

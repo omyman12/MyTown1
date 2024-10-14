@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         else
-            Destroy (instance);
+            Destroy(instance);
     }
     public void SettingPlayerName(string playerName)
     {
@@ -34,36 +34,67 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         Initalize();
-        // SettingPlayerName(playerName); 
-        InvokeCharacter(); 
-       
+        TimeStop();
     }
 
     public void KnightChoice()
     {
+
+        //gameObject.GetComponent<Image>().color = new Color32(0, 0, 0, 255);
         characterIndex = 1;
+        Debug.Log("idx 1");
+        if (characterIndex == 1)
+        {
+            //GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            Debug.Log("idx 1 색변경");
+        }
+        //else GetComponent<Image>().color = new Color32(0, 0, 0, 255);
+        var image = GetComponent<Image>();
+        if (image == null)
+        {
+            Debug.LogError("Image missing"); // 이미지가 없음 > 왜?
+        }
+        else
+        {
+            image.color = new Color32(0, 0, 0, 255);
+        }
+
+
     }
 
     public void DwarfChoice()
     {
+
+        //GetComponent<Image>().color = new Color32(0, 0, 0, 255);
         characterIndex = 0;
+        Debug.Log("idx 0");
+        if (characterIndex == 0)
+        {
+            //GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            Debug.Log("idx 0 색변경");
+        }
+        //GetComponent<Image>().color = new Color32(0, 0, 0, 255);
     }
     public void Initalize()
     {
         kngiht = Resources.Load<GameObject>("Prefabs/knight");
         dwarf = Resources.Load<GameObject>("Prefabs/dwarf");
-
-        if (kngiht == null)
-            Debug.LogError("Knight prefab errer");
-        if (dwarf == null)
-            Debug.LogError("Dwarf prefab errer");
+       
     }
 
-    public void InvokeCharacter() 
+    public void TimeStop()
+    {
+        Time.timeScale = 0.0f;
+    }
+    public void TimePass()
+    {
+        Time.timeScale = 1.0f;
+    }
+    public void InvokeCharacter()
     {
         if (characterIndex == 0)
         {
-            Instantiate(dwarf, this.transform);
+            Instantiate(dwarf, this.transform); //this.transform을 해야 지정된 위치로 프리팹
         }
         else if (characterIndex == 1)
         {
